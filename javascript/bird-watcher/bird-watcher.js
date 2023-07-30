@@ -28,6 +28,8 @@ export function totalBirdCount(birdsPerDay) {
  * @returns {number} birds counted in the given week
  */
 export function birdsInWeek(birdsPerDay, week) {
+	// Here, I sort all days per week in an array. This is not necessary, but can be useful later,
+	// if you need to access another week.
 	let weeks = [];
 	let weekIndex = 0;
 	for (let j = 0; j < week; j++) {
