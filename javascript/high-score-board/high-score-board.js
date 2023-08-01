@@ -8,7 +8,7 @@
  */
 export function createScoreBoard() {
     const scoreBoard = {
-        "The Best Ever": 1000000,
+        "The Best Ever": 1_000_000,
     };
     return scoreBoard;
 }
@@ -59,7 +59,7 @@ export function updateScore(scoreBoard, player, points) {
  */
 export function applyMondayBonus(scoreBoard) {
     for (let player in scoreBoard) {
-        scoreBoard[player] += 100;
+        updateScore(scoreBoard, player, 100);
     }
     return scoreBoard;
 }
@@ -71,6 +71,5 @@ export function applyMondayBonus(scoreBoard) {
  * @returns {number} normalized score
  */
 export function normalizeScore(params) {
-    let normalizeScore = params.normalizeFunction(params.score);
-    return normalizeScore;
+    return params.normalizeFunction(params.score);
 }
