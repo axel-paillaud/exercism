@@ -15,7 +15,9 @@
  *  translated coordinate pair in the form [x, y]
  */
 export function translate2d(dx, dy) {
-  throw new Error('Implement the translate2d function');
+	return function(moveX, moveY) {
+		return [moveX += dx, moveY += dy];
+	}
 }
 
 /**
