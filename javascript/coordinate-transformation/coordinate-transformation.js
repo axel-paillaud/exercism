@@ -47,10 +47,9 @@ export function scale2d(sx, sy) {
  *  transformed coordinate pair in the form [x, y]
  */
 export function composeTransform(f, g) {
-	return function(ff, gg) {
-		let fResult = f(ff, gg);
-		let gResult = g(fResult[0], fResult[1]);
-		return gResult;
+	return function(fInput, gInput) {
+		const [arg1, arg2] = f(fInput, gInput);
+		return g(arg1, arg2);
 	};
 }
 
