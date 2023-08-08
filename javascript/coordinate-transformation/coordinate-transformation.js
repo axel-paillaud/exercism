@@ -48,9 +48,13 @@ export function scale2d(sx, sy) {
  */
 export function composeTransform(f, g) {
 	return function(ff, gg) {
-		let fResult = ff;
-		let gResult = gg;
-		return [fResult, gResult];
+		console.log('ff is : ');
+		console.log(ff);
+		console.log('gg is : ');
+		console.log(gg);
+		let fResult = f(ff, gg);
+		let gResult = g(ff, gg);
+		return [gResult];
 	};
 }
 
