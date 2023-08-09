@@ -68,10 +68,10 @@ export function memoizeTransform(f) {
 	return function(x, y) {
 		//if (result && functionCall === f && input === [x, y]) return result;
 		if (input[0] === x && input[1] === y) {
-			input = [];
 			return result;
 		}
 
+		input = [];
 		input.push(x, y);
 		result = f(x, y);
 		return result;
