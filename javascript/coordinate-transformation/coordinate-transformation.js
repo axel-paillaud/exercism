@@ -64,14 +64,16 @@ export function composeTransform(f, g) {
  */
 export function memoizeTransform(f) {
 	let result;
-	let functionCall;
 	let input = [];
 	return function(x, y) {
 		//if (result && functionCall === f && input === [x, y]) return result;
-		if (result && functionCall === f && input !== [x, y]) return result;
+		if (input[0] === x && input[1] === y) {
+			input = [];
+			return result;
+		}
+
 		input.push(x, y);
 		result = f(x, y);
-		functionCall = f;
 		return result;
 	}
 }
