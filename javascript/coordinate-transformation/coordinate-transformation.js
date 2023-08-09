@@ -16,7 +16,7 @@
  */
 export function translate2d(dx, dy) {
 	return function(moveX, moveY) {
-		return [moveX += dx, moveY += dy];
+		return [moveX + dx, moveY + dy];
 	}
 }
 
