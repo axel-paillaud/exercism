@@ -66,7 +66,6 @@ export function memoizeTransform(f) {
 	let result;
 	let input = [];
 	return function(x, y) {
-		//if (result && functionCall === f && input === [x, y]) return result;
 		if (input[0] === x && input[1] === y) {
 			return result;
 		}
