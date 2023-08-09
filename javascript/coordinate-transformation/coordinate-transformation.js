@@ -48,8 +48,7 @@ export function scale2d(sx, sy) {
  */
 export function composeTransform(f, g) {
 	return function(fInput, gInput) {
-		const [arg1, arg2] = f(fInput, gInput);
-		return g(arg1, arg2);
+		return g(...f(fInput, gInput));
 	};
 }
 
@@ -72,7 +71,6 @@ export function memoizeTransform(f) {
 
 		input = [];
 		input.push(x, y);
-		result = f(x, y);
-		return result;
+		return result = f(x, y);
 	}
 }
