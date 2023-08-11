@@ -9,7 +9,9 @@
  * @returns {Card} the first card in the deck
  */
 export function getFirstCard(deck) {
-  throw new Error('Implement the getFirstCard function');
+	const decks = [...deck];
+	const [firstCard] = decks;
+	return firstCard;
 }
 
 /**
