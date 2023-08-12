@@ -13,7 +13,7 @@
  * @returns {number} position of the card in the stack
  */
 export function getCardPosition(stack, card) {
-	return stack.findIndex(currentCard => currentCard === card);
+	return stack.indexOf(card);
 }
 
 /**
