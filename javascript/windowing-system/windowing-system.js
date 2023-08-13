@@ -38,22 +38,19 @@ export class ProgramWindow {
 	}
 
 	resize(Size) {
-		if (Size.width < 1 && Size.height < 1) {
+		if (Size.width < 1) 
 			this.size.width = 1;
-			this.size.height = 1;
-		}
-		else if (Size.width < 1) {
-			this.size.width = 1;
-			this.size.height = Size.height;
-		}
-		else if (Size.height < 1) {
+		else if (Size.width > this.screenSize.width) 
+			this.size.width = this.screenSize.width;
+		else
 			this.size.width = Size.width;
+
+		if (Size.height < 1) 
 			this.size.height = 1;
-		}
-		else {
-			this.size.width = Size.width;
+		else if (Size.height > this.screenSize.height) 
+			this.size.height = this.screenSize.height;
+		else
 			this.size.height = Size.height;
-		}
 	}
 }
 
