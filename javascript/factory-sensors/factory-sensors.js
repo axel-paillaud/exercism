@@ -57,6 +57,6 @@ export function monitorTheMachine(actions) {
 		else if (error instanceof OverheatingError) {
 			error.temperature < 600 ? actions.alertOverheating() : actions.shutdown();
 		}
-		else actions.check();
+		else throw error;
 	}
 }
