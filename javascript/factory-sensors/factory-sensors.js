@@ -3,10 +3,10 @@
 export class ArgumentError extends Error {}
 
 export class OverheatingError extends Error {
-  constructor(temperature) {
-    super(`The temperature is ${temperature} ! Overheating !`);
-    this.temperature = temperature;
-  }
+	constructor(temperature) {
+		super(`The temperature is ${temperature} ! Overheating !`);
+		this.temperature = temperature;
+	}
 }
 
 /**
@@ -48,5 +48,15 @@ export function reportOverheating(temperature) {
  * @throws {ArgumentError|OverheatingError|Error}
  */
 export function monitorTheMachine(actions) {
-	throw new Error('Implement the monitorTheMachine function');
+	try {
+		actions.check();
+	} catch(error) {
+		if (error instanceof ArgumentError) {
+			actions.alertDeadSensor();
+		}
+		else if (error instanceof OverheatingError) {
+			error.temperature < 600 ? actions.alertOverheating() : actions.shutdown();
+		}
+		else actions.check();
+	}
 }
