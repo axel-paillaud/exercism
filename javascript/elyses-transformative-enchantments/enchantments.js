@@ -39,7 +39,8 @@ export function threeOfEachThree(deck) {
  * @returns {number[]} deck with only two middle cards
  */
 export function middleTwo(deck) {
-  throw new Error('Implement the middleTwo function');
+    let middleTwoCard = deck.slice(4, 6);
+    return middleTwoCard;
 }
 
 /**
