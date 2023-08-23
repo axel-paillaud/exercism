@@ -52,9 +52,12 @@ export function middleTwo(deck) {
  */
 
 export function sandwichTrick(deck) {
-    console.log("deck : " + deck);
-    let firstAndLastCard = deck.splice(-1, 2).reverse();
-    console.log("firstAndLastCard : " + firstAndLastCard);
+    let firstAndLastCard = [];
+
+    firstAndLastCard.push(deck.pop());
+    firstAndLastCard.push(deck.shift());
+    deck.splice(deck.length / 2, 0, firstAndLastCard[0], firstAndLastCard[1]);
+
     return deck;
 }
 
