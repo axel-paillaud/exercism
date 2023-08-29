@@ -8,8 +8,7 @@
  * @returns {number[]} deck with every card doubled
  */
 export function seeingDouble(deck) {
-    const newDeck = deck.map(value => value * 2);
-    return newDeck;
+    return deck.map(value => value * 2);
 }
 
 /**
@@ -20,14 +19,7 @@ export function seeingDouble(deck) {
  * @returns {number[]} deck with triplicate 3s
  */
 export function threeOfEachThree(deck) {
-    const newDeck = [];
-    deck.forEach((card, index) => {
-        if (card === 3) {
-            newDeck.push(3, 3, 3);
-        }
-        else newDeck.push(card);
-    });
-    return newDeck;
+    return deck.flatMap((card) => card === 3 ? [card, card, card] : [card]);
 }
 
 /**
