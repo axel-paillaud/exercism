@@ -81,7 +81,9 @@ export function twoIsSpecial(deck) {
  * @returns {number[]} ordered deck
  */
 export function perfectlyOrdered(deck) {
-    return deck.sort();
+    return deck.sort((a, b) => {
+        return a - b;
+    });
 }
 
 /**
