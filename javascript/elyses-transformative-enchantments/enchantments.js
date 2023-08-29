@@ -31,8 +31,7 @@ export function threeOfEachThree(deck) {
  * @returns {number[]} deck with only two middle cards
  */
 export function middleTwo(deck) {
-    let middleTwoCard = deck.slice(4, 6);
-    return middleTwoCard;
+    return deck.slice(4, 6);
 }
 
 /**
@@ -50,7 +49,7 @@ export function sandwichTrick(deck) {
     firstAndLastCard.push(deck.shift());
     deck.splice(deck.length / 2, 0, firstAndLastCard[0], firstAndLastCard[1]);
 
-    return deck;
+   return deck;
 }
 
 /**
@@ -73,9 +72,7 @@ export function twoIsSpecial(deck) {
  * @returns {number[]} ordered deck
  */
 export function perfectlyOrdered(deck) {
-    return deck.sort((a, b) => {
-        return a - b;
-    });
+    return deck.sort((a, b) => a - b); 
 }
 
 /**
