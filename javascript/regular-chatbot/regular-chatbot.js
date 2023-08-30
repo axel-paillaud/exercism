@@ -18,7 +18,7 @@ export function isValidCommand(command) {
  * @returns {string} The message without the emojis encryption
  */
 export function removeEmoji(message) {
-  throw new Error('Please implement the removeEmoji function');
+    return message.replace(/emoji\d+/g, '');
 }
 
 /**
