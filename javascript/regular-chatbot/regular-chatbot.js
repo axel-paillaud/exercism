@@ -18,7 +18,8 @@ export function isValidCommand(command) {
  * @returns {string} The message without the emojis encryption
  */
 export function removeEmoji(message) {
-    return message.replace(/emoji\d+/g, '');
+    let regex = new RegExp(/emoji\d+/, 'g');
+    return message.replace(regex, '');
 }
 
 /**
@@ -28,7 +29,9 @@ export function removeEmoji(message) {
  * @returns {string} the Chatbot response to the phone Validation
  */
 export function checkPhoneNumber(number) {
-  throw new Error('Please implement the checkPhoneNumber function');
+    const result = /\(\+\d\d\)\s\d\d\d-\d\d\d-\d\d\d/.test(number);
+    if (result) return 'Thanks! You can now download me to your phone.';
+    else return 'Oops, it seems like I can\'t reach out to ' + number;
 }
 
 /**
