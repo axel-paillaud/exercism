@@ -8,7 +8,7 @@
  */
 
 export function isValidCommand(command) {
-  throw new Error('Please implement the isValidCommand function');
+    return /^chatbot/i.test(command);
 }
 
 /**
