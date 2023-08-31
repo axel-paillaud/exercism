@@ -53,5 +53,6 @@ export function getURL(userInput) {
 export function niceToMeetYou(fullName) {
     let names = fullName.match(/[A-Z][a-z]+/g);
     let str = "Nice to meet you, firstName Name";
-    return str.replace();
+    let result = str.replace(/firstName/, names[1]).replace(/Name/, names[0]);
+    return result;
 }
