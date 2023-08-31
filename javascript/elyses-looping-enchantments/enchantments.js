@@ -15,7 +15,6 @@ export function cardTypeCheck(stack, card) {
     });
     return count;
 }
-
 /**
  * Determine how many cards are odd or even
  *
