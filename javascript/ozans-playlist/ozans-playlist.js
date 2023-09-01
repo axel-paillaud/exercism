@@ -11,7 +11,17 @@
  * @returns {string[]} new playlist with unique entries
  */
 export function removeDuplicates(playlist) {
-  throw new Error('Please implement the removeDuplicates function');
+    const set = new Set();
+    for (const music in playlist) {
+        set.add(music);
+    }
+
+    return set.entries();
+    let newPlaylist = [];
+    set.forEach(music => {
+        newPlaylist.push(music);
+    });
+    return newPlaylist;
 }
 
 /**
