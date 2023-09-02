@@ -35,7 +35,7 @@ export function hasTrack(playlist, track) {
  * @returns {string[]} new playlist
  */
 export function addTrack(playlist, track) {
-    let set = new Set(playlist);
+    const set = new Set(playlist);
     set.add(track);
     return Array.from(set);
 }
@@ -48,7 +48,7 @@ export function addTrack(playlist, track) {
  * @returns {string[]} new playlist
  */
 export function deleteTrack(playlist, track) {
-    let set = new Set(playlist);
+    const set = new Set(playlist);
     set.delete(track);
     return Array.from(set);
 }
@@ -60,5 +60,11 @@ export function deleteTrack(playlist, track) {
  * @returns {string[]} list of artists
  */
 export function listArtists(playlist) {
-  throw new Error('Please implement the listArtists function');
+    const artists = [];
+    for (const music of playlist) {
+        artists.push(music.split(' - ')[1]);
+    }
+
+    const set = new Set(artists);
+    return Array.from(set);
 }
