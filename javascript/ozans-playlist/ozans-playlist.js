@@ -12,16 +12,11 @@
  */
 export function removeDuplicates(playlist) {
     const set = new Set();
-    for (const music in playlist) {
+    for (const music of playlist) {
         set.add(music);
     }
 
-    return set.entries();
-    let newPlaylist = [];
-    set.forEach(music => {
-        newPlaylist.push(music);
-    });
-    return newPlaylist;
+    return Array.from(set);
 }
 
 /**
