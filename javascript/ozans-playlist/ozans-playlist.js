@@ -27,7 +27,10 @@ export function removeDuplicates(playlist) {
  * @returns {boolean} whether the track is in the playlist
  */
 export function hasTrack(playlist, track) {
-  throw new Error('Please implement the hasTrack function');
+    for (const music of playlist) {
+        if (music === track) return true;
+    }
+    return false;
 }
 
 /**
