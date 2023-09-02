@@ -60,11 +60,5 @@ export function deleteTrack(playlist, track) {
  * @returns {string[]} list of artists
  */
 export function listArtists(playlist) {
-    const artists = [];
-    for (const music of playlist) {
-        artists.push(music.split(' - ')[1]);
-    }
-
-    const set = new Set(artists);
-    return Array.from(set);
+    return Array.from(new Set(playlist.map(music => music.split(' - ').pop())));
 }
