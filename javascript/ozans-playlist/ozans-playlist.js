@@ -11,11 +11,7 @@
  * @returns {string[]} new playlist with unique entries
  */
 export function removeDuplicates(playlist) {
-    const set = new Set();
-    for (const music of playlist) {
-        set.add(music);
-    }
-
+    const set = new Set(playlist);
     return Array.from(set);
 }
 
@@ -27,10 +23,8 @@ export function removeDuplicates(playlist) {
  * @returns {boolean} whether the track is in the playlist
  */
 export function hasTrack(playlist, track) {
-    for (const music of playlist) {
-        if (music === track) return true;
-    }
-    return false;
+    const set = new Set(playlist);
+    return set.has(track);
 }
 
 /**
@@ -41,7 +35,9 @@ export function hasTrack(playlist, track) {
  * @returns {string[]} new playlist
  */
 export function addTrack(playlist, track) {
-  throw new Error('Please implement the addTrack function');
+    let set = new Set(playlist);
+    set.add(track);
+    return Array.from(set);
 }
 
 /**
@@ -52,7 +48,9 @@ export function addTrack(playlist, track) {
  * @returns {string[]} new playlist
  */
 export function deleteTrack(playlist, track) {
-  throw new Error('Please implement the deleteTrack function');
+    let set = new Set(playlist);
+    set.delete(track);
+    return Array.from(set);
 }
 
 /**
