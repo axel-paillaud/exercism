@@ -29,7 +29,7 @@ export class TranslationService {
   free(text) {
     return this.api.fetch(text)
     .then((response) => {
-      return response.translation;
+        return response.translation;
     })
   }
 
@@ -43,8 +43,14 @@ export class TranslationService {
    * @param {string[]} texts
    * @returns {Promise<string[]>}
    */
-  batch(texts) {
-    throw new Error('Implement the batch function');
+  async batch(texts) {
+    if(texts.length === 0) throw new BatchIsEmpty();
+    let translatedTexts = [];
+    for (const text of texts) {
+      const response = await this.api.fetch(text);
+      translatedTexts.push(response.translation);
+    }
+    return translatedTexts;
   }
 
   /**
