@@ -63,7 +63,19 @@ export class TranslationService {
    * @returns {Promise<void>}
    */
   request(text) {
-    throw new Error('Implement the request function');
+    // try to define this callback, and call it again, three time
+    const promise = new Promise((resolve, reject) => {
+      this.api.request(text, (response) => {
+        if (response === undefined) {
+          resolve();
+        }
+        else {
+          reject(response);
+        }
+      });
+    });
+
+    return promise;
   }
 
   /**
