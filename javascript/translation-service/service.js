@@ -64,7 +64,7 @@ export class TranslationService {
    */
   request(text) {
     // try to define this callback, and call it again, three time
-    const promise = new Promise((resolve, reject) => {
+/*    const promise = new Promise((resolve, reject) => {
       this.api.request(text, (response) => {
         if (response === undefined) {
           resolve();
@@ -73,9 +73,55 @@ export class TranslationService {
           reject(response);
         }
       });
-    });
+    });*/
 
-    return promise;
+/*    const promise = new Promise((resolve, reject) => {
+      this.api.request(text, (response) => {
+        if (response === undefined) {
+          resolve();
+        }
+        else {
+          this.api.request(text, (response) => {
+            if (response === undefined) {
+              resolve();
+            }
+            else {
+              this.api.request(text, (response) => {
+                if (response === undefined) {
+                  resolve();
+                }
+                else {
+                  reject(response);
+                }
+              });
+            }
+          });
+        }
+      }); 
+    });
+    return promise;*/
+
+    let count = 1;
+    let MAX_TRY = 3;
+
+    function tryRequest(api) {
+      const promise = new Promise((resolve, reject) => {
+        api.request(text, (response) => {
+          if (response === undefined) resolve();
+          else reject(response);
+        });
+      });
+      console.log(count);
+      console.log(promise);
+      if (count >= MAX_TRY) return promise;
+      else if (promise === undefined) return promise;
+      else {
+        count++;
+        tryRequest(api);
+      }
+    }
+
+    return tryRequest(this.api);
   }
 
   /**
