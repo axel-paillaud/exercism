@@ -101,24 +101,20 @@ export class TranslationService {
     });
     return promise;*/
 
-    let count = 1;
+    let count = 0;
     let MAX_TRY = 3;
 
     function tryRequest(api) {
+      console.log(count);
+      count++;
       const promise = new Promise((resolve, reject) => {
         api.request(text, (response) => {
-          if (response === undefined) resolve();
-          else reject(response);
+          if (response === undefined) resolve(response);
+          else if ( count > MAX_TRY) reject(response); 
+          else return tryRequest(api);
         });
       });
-      console.log(count);
-      console.log(promise);
-      if (count >= MAX_TRY) return promise;
-      else if (promise === undefined) return promise;
-      else {
-        count++;
-        tryRequest(api);
-      }
+      return promise;
     }
 
     return tryRequest(this.api);
