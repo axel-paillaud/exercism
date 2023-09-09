@@ -62,33 +62,21 @@ export class TranslationService {
    * @param {string} text
    * @returns {Promise<void>}
    */
-  request(text) {
-    // try to define this callback, and call it again, three time
+  async request(text) {
 /*    const promise = new Promise((resolve, reject) => {
       this.api.request(text, (response) => {
         if (response === undefined) {
-          resolve();
-        }
-        else {
-          reject(response);
-        }
-      });
-    });*/
-
-/*    const promise = new Promise((resolve, reject) => {
-      this.api.request(text, (response) => {
-        if (response === undefined) {
-          resolve();
+          resolve(response);
         }
         else {
           this.api.request(text, (response) => {
             if (response === undefined) {
-              resolve();
+              resolve(response);
             }
             else {
               this.api.request(text, (response) => {
                 if (response === undefined) {
-                  resolve();
+                  resolve(response);
                 }
                 else {
                   reject(response);
@@ -99,25 +87,29 @@ export class TranslationService {
         }
       }); 
     });
-    return promise;*/
-
-    let count = 0;
-    let MAX_TRY = 3;
-
-    function tryRequest(api) {
-      console.log(count);
-      count++;
-      const promise = new Promise((resolve, reject) => {
+    return promise; */
+    
+    function request(api) {
+      return new Promise((resolve, reject) => {
         api.request(text, (response) => {
           if (response === undefined) resolve(response);
-          else if ( count > MAX_TRY) reject(response); 
-          else return tryRequest(api);
+          else reject(response);
         });
       });
-      return promise;
     }
 
-    return tryRequest(this.api);
+    for (let i = 0; i < 3; i++) {
+      request(this.api)
+      .then((response) => {
+        console.log(response);
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      })
+
+      console.log("hello");
+    }
   }
 
   /**
