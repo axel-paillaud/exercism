@@ -129,7 +129,11 @@ export class TranslationService {
    * @returns {Promise<string>}
    */
   premium(text, minimumQuality) {
-    throw new Error('Implement the premium function');
+    return this.api.fetch(text)
+    .then((response) => {
+      console.log('translation : ' + response.translation);
+      console.log('quality : ' + response.quality);
+    })
   }
 }
 
