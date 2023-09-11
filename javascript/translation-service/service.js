@@ -96,22 +96,18 @@ export class TranslationService {
       return new Promise((resolve, reject) => {
         this.api.request(text, (error) => {
           if (!error) {
-            // Si la demande réussit, résolve avec undefined
             resolve();
           } else {
             retries++;
-            // Si la demande échoue et que nous n'avons pas encore atteint le nombre maximum de réessais
             if (retries <= this.retryCount) {
-              // Réessayer immédiatement
               tryRequest()
                 .then(() => {
-                  resolve(); // Réussi après réessai
+                  resolve();
                 })
                 .catch((retryError) => {
-                  reject(retryError); // Échec après réessai
+                  reject(retryError);
                 });
             } else {
-              // Si nous avons épuisé toutes les tentatives, rejeter avec la dernière erreur reçue
               reject(error);
             }
           }
