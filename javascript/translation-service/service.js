@@ -15,6 +15,7 @@ export class TranslationService {
    */
   constructor(api) {
     this.api = api;
+    this.retryCount = 2;
   }
 
   /**
@@ -62,7 +63,7 @@ export class TranslationService {
    * @param {string} text
    * @returns {Promise<void>}
    */
-  async request(text) {
+  request(text) {
 /*    const promise = new Promise((resolve, reject) => {
       this.api.request(text, (response) => {
         if (response === undefined) {
@@ -89,27 +90,36 @@ export class TranslationService {
     });
     return promise; */
     
-    function request(api) {
+    let retries = 0;
+
+    const tryRequest = () => {
       return new Promise((resolve, reject) => {
-        api.request(text, (response) => {
-          if (response === undefined) resolve(response);
-          else reject(response);
+        this.api.request(text, (error) => {
+          if (!error) {
+            // Si la demande réussit, résolve avec undefined
+            resolve();
+          } else {
+            retries++;
+            // Si la demande échoue et que nous n'avons pas encore atteint le nombre maximum de réessais
+            if (retries <= this.retryCount) {
+              // Réessayer immédiatement
+              tryRequest()
+                .then(() => {
+                  resolve(); // Réussi après réessai
+                })
+                .catch((retryError) => {
+                  reject(retryError); // Échec après réessai
+                });
+            } else {
+              // Si nous avons épuisé toutes les tentatives, rejeter avec la dernière erreur reçue
+              reject(error);
+            }
+          }
         });
       });
-    }
+    };
 
-    for (let i = 0; i < 3; i++) {
-      request(this.api)
-      .then((response) => {
-        console.log(response);
-        return response;
-      })
-      .catch((error) => {
-        return error;
-      })
-
-      console.log("hello");
-    }
+    return tryRequest();
   }
 
   /**
