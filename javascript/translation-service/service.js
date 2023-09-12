@@ -64,32 +64,6 @@ export class TranslationService {
    * @returns {Promise<void>}
    */
   request(text) {
-/*    const promise = new Promise((resolve, reject) => {
-      this.api.request(text, (response) => {
-        if (response === undefined) {
-          resolve(response);
-        }
-        else {
-          this.api.request(text, (response) => {
-            if (response === undefined) {
-              resolve(response);
-            }
-            else {
-              this.api.request(text, (response) => {
-                if (response === undefined) {
-                  resolve(response);
-                }
-                else {
-                  reject(response);
-                }
-              });
-            }
-          });
-        }
-      }); 
-    });
-    return promise; */
-    
     let retries = 0;
 
     const tryRequest = () => {
@@ -133,7 +107,7 @@ export class TranslationService {
       this.api.fetch(text)
       .then((response) => {
         if (response.quality < minimumQuality) {
-          reject(new QualityThresholdNotMet);
+          reject(new QualityThresholdNotMet(response.translation));
         } else {
           resolve(response.translation);
         }
@@ -144,15 +118,11 @@ export class TranslationService {
           this.api.fetch(text)
           .then((response) => {
             if (response.quality < minimumQuality) {
-              reject(new QualityThresholdNotMet);
+              reject(new QualityThresholdNotMet(response.translation));
             } else {
               resolve(response.translation);
             }
           })
-          // never fall in this catch ?
-          .catch((error) => {
-            console.log(error);
-          });
         })
         .catch((error) => {
           reject(error);
@@ -160,7 +130,7 @@ export class TranslationService {
       });
     });
 
-  return promise;
+    return promise;
   }
 
 }
