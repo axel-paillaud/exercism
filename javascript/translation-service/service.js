@@ -143,7 +143,11 @@ export class TranslationService {
         .then((response) => {
           this.api.fetch(text)
           .then((response) => {
-            resolve(response.translation);
+            if (response.quality < minimumQuality) {
+              reject(new QualityThresholdNotMet);
+            } else {
+              resolve(response.translation);
+            }
           })
           // never fall in this catch ?
           .catch((error) => {
