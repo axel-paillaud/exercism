@@ -129,14 +129,28 @@ export class TranslationService {
    * @returns {Promise<string>}
    */
   premium(text, minimumQuality) {
-    return this.api.fetch(text)
-    .then((response) => {
-      return response.translation;
-    })
-    .catch((error) => {
-      console.log(error);
+    let promise = new Promise((resolve, reject) => {
+      this.api.fetch(text)
+      .then((response) => {
+        resolve(response.translation);
+      })
+      .catch((error) => {
+        this.request(text)
+        .then((response) => {
+          this.api.fetch(text)
+          .then((response) => {
+            console.log(response);
+            resolve(response.translation);
+          })
+          .catch();
+        })
+        .catch();
+      });
     });
+
+  return promise;
   }
+
 }
 
 /**
