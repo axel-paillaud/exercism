@@ -132,14 +132,17 @@ export class TranslationService {
     let promise = new Promise((resolve, reject) => {
       this.api.fetch(text)
       .then((response) => {
-        resolve(response.translation);
+        if (response.quality < minimumQuality) {
+          reject(new QualityThresholdNotMet);
+        } else {
+          resolve(response.translation);
+        }
       })
       .catch((error) => {
         this.request(text)
         .then((response) => {
           this.api.fetch(text)
           .then((response) => {
-            console.log(response);
             resolve(response.translation);
           })
           .catch();
