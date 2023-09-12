@@ -133,6 +133,9 @@ export class TranslationService {
     .then((response) => {
       return response.translation;
     })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 }
 
