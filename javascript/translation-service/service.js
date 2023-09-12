@@ -145,9 +145,14 @@ export class TranslationService {
           .then((response) => {
             resolve(response.translation);
           })
-          .catch();
+          // never fall in this catch ?
+          .catch((error) => {
+            console.log(error);
+          });
         })
-        .catch();
+        .catch((error) => {
+          reject(error);
+        });
       });
     });
 
