@@ -131,8 +131,7 @@ export class TranslationService {
   premium(text, minimumQuality) {
     return this.api.fetch(text)
     .then((response) => {
-      console.log('translation : ' + response.translation);
-      console.log('quality : ' + response.quality);
+      return response.translation;
     })
   }
 }
