@@ -45,7 +45,7 @@ export class TranslationService {
    * @returns {Promise<string[]>}
    */
   async batch(texts) {
-    if(texts.length === 0) throw new BatchIsEmpty();
+    if(texts.length === 0) return Promise.reject(new BatchIsEmpty());
     let translatedTexts = [];
     for (const text of texts) {
       const response = await this.api.fetch(text);
