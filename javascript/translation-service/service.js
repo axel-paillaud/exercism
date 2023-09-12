@@ -112,16 +112,14 @@ export class TranslationService {
           resolve(response.translation);
         }
       })
-      .catch((error) => {
+      .catch(() => {
         this.request(text)
-        .then((response) => {
-          this.api.fetch(text)
-          .then((response) => {
+        .then(() => {
+          this.api.fetch(text).then((response) => {
             if (response.quality < minimumQuality) {
               reject(new QualityThresholdNotMet(response.translation));
-            } else {
-              resolve(response.translation);
             }
+            resolve(response.translation);
           })
         })
         .catch((error) => {
