@@ -2,6 +2,27 @@
 //
 // @ts-check
 
+const PIZZAS = {
+  Margherita: 7,
+  Caprese: 9,
+  Formaggio: 10
+}
+
+const EXTRAS = {
+  ExtraSauce: 1,
+  ExtraToppings: 2
+}
+
+function computeExtras(extras, n, i) {
+  if (i === 0) return n;
+
+  //console.log(EXTRAS[extras[i - 1]]);
+  n += EXTRAS[extras[i - 1]];
+  console.log(n);
+  i--;
+  return computeExtras(extras, n, i);
+}
+
 /**
  * Determine the prize of the pizza given the pizza and optional extras
  *
@@ -11,7 +32,8 @@
  * @returns {number} the price of the pizza
  */
 export function pizzaPrice(pizza, ...extras) {
-  throw new Error('Please implement the pizzaPrice function');
+  let result = computeExtras(extras, 0, extras.length);
+  return PIZZAS[pizza] + result;
 }
 
 /**
