@@ -12,13 +12,20 @@ const EXTRAS = {
   ExtraSauce: 1,
   ExtraToppings: 2
 }
+/**
+ * Sum all extras a customers take, recursively
+ *
+ * @param {extras[]} list of extras
+ * @param {n} Start to count from this number
+ * @param {i} Total range of extras
+ *
+ * @returns {number} the total price of all extras
+ */
 
 function computeExtras(extras, n, i) {
+  if (!extras) return 0;
   if (i === 0) return n;
-
-  //console.log(EXTRAS[extras[i - 1]]);
   n += EXTRAS[extras[i - 1]];
-  console.log(n);
   i--;
   return computeExtras(extras, n, i);
 }
@@ -32,8 +39,7 @@ function computeExtras(extras, n, i) {
  * @returns {number} the price of the pizza
  */
 export function pizzaPrice(pizza, ...extras) {
-  let result = computeExtras(extras, 0, extras.length);
-  return PIZZAS[pizza] + result;
+  return computeExtras(extras, PIZZAS[pizza], extras.length);
 }
 
 /**
@@ -43,5 +49,14 @@ export function pizzaPrice(pizza, ...extras) {
  * @returns {number} the price of the total order
  */
 export function orderPrice(pizzaOrders) {
-  throw new Error('Please implement the orderPrice function');
+  let price = 0;
+
+  pizzaOrders.forEach((pizzaOrder) => {
+    let totalExtrasPrice = 0;
+    pizzaOrder.extras.forEach(extra => totalExtrasPrice += EXTRAS[extra]);
+
+    price += (PIZZAS[pizzaOrder.pizza] + totalExtrasPrice);
+  });
+
+  return price;
 }
