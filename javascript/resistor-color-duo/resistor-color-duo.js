@@ -3,16 +3,13 @@
 // convenience to get you started writing code faster.
 //
 
-/**
- * Return only the first two values, 
- * and convert it to Number, in case we have string
-*/
-function keepOnlyTwo(codeValue) {
-    return Number(codeValue.splice(0, 2).join(''));
+function findColor(color) {
+    return COLORS.indexOf(color);
 }
 
 export const decodedValue = (colors) => {
-    return keepOnlyTwo(colors.map(color => COLORS.indexOf(color)));
+    let onlyTwoColors = colors.splice(0, 2);
+    return Number(onlyTwoColors.map(color => findColor(color)).join(''));
 };
 
 const COLORS = [
