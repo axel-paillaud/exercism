@@ -3,6 +3,13 @@
 // convenience to get you started writing code faster.
 //
 
-export const toRna = () => {
-  throw new Error('Remove this statement and implement this function');
+const DNA_TO_RNA = {
+    'G': 'C',
+    'C': 'G',
+    'T': 'A',
+    'A': 'U'
+}
+
+export const toRna = (input) => {
+    console.log(DNA_TO_RNA[input]);
 };
