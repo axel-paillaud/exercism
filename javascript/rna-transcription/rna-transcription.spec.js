@@ -9,15 +9,15 @@ describe('Transcription', () => {
     expect(toRna('C')).toEqual('G');
   });
 
-  xtest('transcribes guanine to cytosine', () => {
+  test('transcribes guanine to cytosine', () => {
     expect(toRna('G')).toEqual('C');
   });
 
-  xtest('transcribes thymine to adenine', () => {
+  test('transcribes thymine to adenine', () => {
     expect(toRna('T')).toEqual('A');
   });
 
-  xtest('transcribes adenine to uracil', () => {
+  test('transcribes adenine to uracil', () => {
     expect(toRna('A')).toEqual('U');
   });
 

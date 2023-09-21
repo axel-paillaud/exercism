@@ -11,5 +11,9 @@ const DNA_TO_RNA = {
 }
 
 export const toRna = (input) => {
-    console.log(DNA_TO_RNA[input]);
+    let rna = [];
+    input.split('').forEach((letter) => {
+        rna.push(DNA_TO_RNA[letter]);
+    });
+    return rna.join('');
 };
