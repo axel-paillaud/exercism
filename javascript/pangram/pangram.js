@@ -12,8 +12,8 @@ const ALPHABET = [
 
 export const isPangram = (string) => {
     if (!string) return false;
-    string.split('').forEach((letter) => {
-        if (!ALPHABET.includes(letter)) return false;
-    });
+    for (let i = 0; i < 24; i++) {
+        if (!string.toLowerCase().includes(ALPHABET[i])) return false;
+    }
     return true;
 };
