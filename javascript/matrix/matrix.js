@@ -4,15 +4,29 @@
 //
 
 export class Matrix {
-  constructor() {
-    throw new Error('Remove this statement and implement this function');
+  constructor(matrix) {
+        this.matrix = matrix;
   }
 
   get rows() {
-    throw new Error('Remove this statement and implement this function');
+        //row.push([Number(this.matrix)]);
+        let rows = [];
+
+        const rawRows = this.matrix.split('\n');
+        rawRows.forEach((row) => {
+            let line = [];
+            let numbers = row.split(' ');
+            numbers.forEach((number) => {
+                line.push(Number(number));
+            });
+
+            rows.push(line);
+        });
+
+        return rows;
   }
 
   get columns() {
-    throw new Error('Remove this statement and implement this function');
+        console.log(this.matrix);
   }
 }
