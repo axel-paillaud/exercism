@@ -9,18 +9,17 @@ export class Matrix {
   }
 
   get rows() {
-        //row.push([Number(this.matrix)]);
         let rows = [];
 
         const rawRows = this.matrix.split('\n');
-        rawRows.forEach((row) => {
-            let line = [];
-            let numbers = row.split(' ');
+        rawRows.forEach((rawRow) => {
+            let row = [];
+            let numbers = rawRow.split(' ');
             numbers.forEach((number) => {
-                line.push(Number(number));
+                row.push(Number(number));
             });
 
-            rows.push(line);
+            rows.push(row);
         });
 
         return rows;
