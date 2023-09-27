@@ -4,41 +4,34 @@
 //
 
 export class Matrix {
-  constructor(matrix) {
+    constructor(matrix) {
         this.matrix = matrix;
-  }
+    }
 
-  get rows() {
-        let rows = [];
-
-        this.matrix.split('\n').forEach((rawRow) => {
-            let row = [];
-            rawRow.split(' ').forEach((number) => {
-                row.push(Number(number));
-            });
-
-            rows.push(row);
+    parseRow(matrix) {
+        return matrix.split('\n').map((row) => {
+            return row.split(' ').map((number) => {
+                return Number(number);
+            })
         });
+    }
 
-        return rows;
-  }
+    get rows() {
+        return this.parseRow(this.matrix);
+    }
 
-  get columns() {
+    get columns() {
         let columns = [];
 
-        const rawRows = this.matrix.split('\n');
-        // for each rawRows, do
-        for (let i = 0; i < rawRows.length; i++) {
-            let numbers = rawRows[i].split(' ');
-
-            //for each numbers in rawRows, do
-            for (let j = 0; j < numbers.length; j++) {
-                if (!columns[j]) {
-                    columns[j] = []; 
+        this.parseRow(this.matrix).map((row, index) => {
+            console.log(index);
+            for (let i = 0; i < row.length; i++) {
+                if (!columns[i]) {
+                    columns[i] = []; 
                 }
-                columns[j].push(Number(numbers[j]));
-            }
-        }
+                columns[i].push(row[i]);
+            }          
+        });
 
         return columns;
     }
