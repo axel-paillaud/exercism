@@ -23,8 +23,7 @@ export class Matrix {
     get columns() {
         let columns = [];
 
-        this.parseRow(this.matrix).map((row, index) => {
-            console.log(index);
+        this.parseRow(this.matrix).forEach((row) => {
             for (let i = 0; i < row.length; i++) {
                 if (!columns[i]) {
                     columns[i] = []; 
@@ -34,5 +33,6 @@ export class Matrix {
         });
 
         return columns;
+
     }
 }
