@@ -11,11 +11,9 @@ export class Matrix {
   get rows() {
         let rows = [];
 
-        const rawRows = this.matrix.split('\n');
-        rawRows.forEach((rawRow) => {
+        this.matrix.split('\n').forEach((rawRow) => {
             let row = [];
-            let numbers = rawRow.split(' ');
-            numbers.forEach((number) => {
+            rawRow.split(' ').forEach((number) => {
                 row.push(Number(number));
             });
 
@@ -26,6 +24,22 @@ export class Matrix {
   }
 
   get columns() {
-        console.log(this.matrix);
-  }
+        let columns = [];
+
+        const rawRows = this.matrix.split('\n');
+        // for each rawRows, do
+        for (let i = 0; i < rawRows.length; i++) {
+            let numbers = rawRows[i].split(' ');
+
+            //for each numbers in rawRows, do
+            for (let j = 0; j < numbers.length; j++) {
+                if (!columns[j]) {
+                    columns[j] = []; 
+                }
+                columns[j].push(Number(numbers[j]));
+            }
+        }
+
+        return columns;
+    }
 }
