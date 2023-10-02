@@ -7,7 +7,7 @@ describe('Book Store', () => {
       expect(cost(basket)).toEqual(800);
     });
 
-    xtest('two of the same book', () => {
+    test('two of the same book', () => {
       const basket = [2, 2];
       expect(cost(basket)).toEqual(1600);
     });
@@ -17,7 +17,7 @@ describe('Book Store', () => {
       expect(cost(basket)).toEqual(0);
     });
 
-    xtest('two different books', () => {
+    test('two different books', () => {
       const basket = [1, 2];
       expect(cost(basket)).toEqual(1520);
     });

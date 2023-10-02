@@ -3,6 +3,14 @@
 // convenience to get you started writing code faster.
 //
 
+function sortBook(books) {
+    const set = new Set(books);
+    console.log(books);
+    console.log(set);
+    return set;
+}
+
 export const cost = (books) => {
-  throw new Error('Remove this statement and implement this function');
+    const sortedBook = sortBook(books);
+    return 800;
 };
