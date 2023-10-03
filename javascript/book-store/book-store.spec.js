@@ -22,12 +22,12 @@ describe('Book Store', () => {
       expect(cost(basket)).toEqual(1520);
     });
 
-    xtest('three different books', () => {
+    test('three different books', () => {
       const basket = [1, 2, 3];
       expect(cost(basket)).toEqual(2160);
     });
 
-    xtest('four different books', () => {
+    test('four different books', () => {
       const basket = [1, 2, 3, 4];
       expect(cost(basket)).toEqual(2560);
     });
@@ -37,7 +37,7 @@ describe('Book Store', () => {
       expect(cost(basket)).toEqual(3000);
     });
 
-    xtest('two groups of four is cheaper than group of five plus group of three', () => {
+    test('two groups of four is cheaper than group of five plus group of three', () => {
       const basket = [1, 1, 2, 2, 3, 3, 4, 5];
       expect(cost(basket)).toEqual(5120);
     });
