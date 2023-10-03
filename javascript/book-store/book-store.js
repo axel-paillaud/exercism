@@ -10,15 +10,41 @@ function sortBook(books, sortedBooks, index) {
         books.splice(books.findIndex((book) => book === sortedBook), 1);
     });
 
-    sortedBooks[index] = [set];
+    sortedBooks[index] = set;
     
     if (books.length === 0) return sortedBooks;
 
     else return sortBook(books, sortedBooks, ++index);
 }
 
+function computeDiscount(batch) {
+    switch(batch.size) {
+        case 1:
+            return 0;
+        case 2:
+            return 0.05;
+        case 3:
+            return 0.10;
+        case 4:
+            return 0.20;
+        case 5:
+            return 0.25;
+    }
+}
+
+function computePrice(sortedBooks) {
+    let price = 0;
+
+    sortedBooks.forEach((batch) => {
+        let discount = computeDiscount(batch);
+        price += (batch.size * 800) - ((batch.size * 800) * discount);
+    });
+
+    return price;
+}
+
 export const cost = (books) => {
     let sortedBooks = sortBook(books, [], 0);
-    console.log(sortedBooks);
-    return 800;
+    let price = computePrice(sortedBooks);
+    return price;
 };
