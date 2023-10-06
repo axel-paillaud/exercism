@@ -14,39 +14,30 @@ const DISCOUNT_PER_COUNT = { 0: 0, 1: 0, 2: 0.05, 3: 0.10, 4: 0.20, 5: 0.25 };
  * @return {array} An array containing arrays of packs with unique books.
  */
 function splitBooks(books, packedBooks, packIndex = 0) {
-/*    let set = new Set(books);
+    let set = new Set(books);
 
     set.forEach((packedBooks) =>  {
         books.splice(books.indexOf(packedBooks), 1);
     });
 
-    packedBooks[packIndex] = [...set]; */
-
-    packedBooks[packIndex] = [];
-
-    books.forEach((book, index) => {
-        if (!packedBooks[packIndex].includes(book)) {
-            packedBooks[packIndex].push(book);
-            books.splice(index, 1);
-        }
-    });
+    packedBooks[packIndex] = [...set];
 
     if (books.length === 0) return packedBooks;
 
     else return splitBooks(books, packedBooks, ++packIndex);
 }
 
-function sortForBestDiscount(sortedBooks) {
-    sortedBooks.forEach((pack) => {
+function sortForBestDiscount(packedBooks) {
+    packedBooks.forEach((pack) => {
         if (pack.length === 5) {
-            sortedBooks.forEach((comparePack) => {
+            packedBooks.forEach((comparePack) => {
                 if (comparePack.length === 3) {
                     comparePack.push(pack.pop());
                 }
             });
         }
     });
-    return sortedBooks;
+    return packedBooks;
 }
 
 function computePrice(sortedBooks, bookPrice) {
