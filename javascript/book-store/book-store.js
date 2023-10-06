@@ -4,27 +4,44 @@
 //
 
 const BOOK_PRICE = 800;
+const DISCOUNT_PER_COUNT = { 0: 0, 1: 0, 2: 0.05, 3: 0.10, 4: 0.20, 5: 0.25 };
 
-function sortBook(books, sortedBooks, index) {
-    let set = new Set(books);
+/**
+ * Split all books by packs of unique books.
+ * @param {array} books - The original array of books to sort
+ * @param {array} sortedBooks - The book array once sorted
+ * @param {number} packIndex -  The index to add current sorted book's pack.
+ * @return {array} An array containing arrays of packs with unique books.
+ */
+function splitBooks(books, packedBooks, packIndex = 0) {
+/*    let set = new Set(books);
 
-    set.forEach((sortedBook) =>  {
-        books.splice(books.findIndex((book) => book === sortedBook), 1);
+    set.forEach((packedBooks) =>  {
+        books.splice(books.indexOf(packedBooks), 1);
     });
 
-    sortedBooks[index] = [...set];
-    
-    if (books.length === 0) return sortedBooks;
+    packedBooks[packIndex] = [...set]; */
 
-    else return sortBook(books, sortedBooks, ++index);
+    packedBooks[packIndex] = [];
+
+    books.forEach((book, index) => {
+        if (!packedBooks[packIndex].includes(book)) {
+            packedBooks[packIndex].push(book);
+            books.splice(index, 1);
+        }
+    });
+
+    if (books.length === 0) return packedBooks;
+
+    else return splitBooks(books, packedBooks, ++packIndex);
 }
 
 function sortForBestDiscount(sortedBooks) {
-    sortedBooks.forEach((batch) => {
-        if (batch.length === 5) {
-            sortedBooks.forEach((compareBatch) => {
-                if (compareBatch.length === 3) {
-                    compareBatch.push(batch.pop());
+    sortedBooks.forEach((pack) => {
+        if (pack.length === 5) {
+            sortedBooks.forEach((comparePack) => {
+                if (comparePack.length === 3) {
+                    comparePack.push(pack.pop());
                 }
             });
         }
@@ -32,34 +49,13 @@ function sortForBestDiscount(sortedBooks) {
     return sortedBooks;
 }
 
-function computeDiscount(batch) {
-    switch(batch.length) {
-        case 1:
-            return 0;
-        case 2:
-            return 0.05;
-        case 3:
-            return 0.10;
-        case 4:
-            return 0.20;
-        case 5:
-            return 0.25;
-    }
-}
-
 function computePrice(sortedBooks, bookPrice) {
-    let price = 0;
-
-    sortedBooks.forEach((batch) => {
-        let discount = computeDiscount(batch);
-        price += (batch.length * bookPrice) - ((batch.length * bookPrice) * discount);
-    });
-
-    return price;
+    return sortedBooks.reduce((accumulator, pack) => {
+        let discount = DISCOUNT_PER_COUNT[pack.length];
+        return accumulator + (pack.length * bookPrice) * (1 - discount);
+    }, 0);
 }
 
 export const cost = (books) => {
-    if (books.length === 0) return 0;
-    let sortedBooks = sortForBestDiscount(sortBook(books, [], 0));
-    return computePrice(sortedBooks, BOOK_PRICE); 
+    return computePrice(sortForBestDiscount(splitBooks(books, [])), BOOK_PRICE);
 }
