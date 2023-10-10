@@ -12,7 +12,7 @@ function computeRows(numberOfRows, pascalTriangle) {
         newRow.push(previousRow[i] + previousRow[i - 1]);
     }
 
-    if (pascalTriangle.length !== 0) newRow.push(1)
+    if (pascalTriangle.length !== 0) newRow.push(1);
     pascalTriangle.push(newRow);
 
     return computeRows(--numberOfRows, pascalTriangle);
