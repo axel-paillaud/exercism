@@ -19,7 +19,7 @@ function computeRow(lastRow, newRow) {
 /*
  * Create Pascal's Triangle recursively based on the number of rows provided
  * @param {number} numberOfRows - The number of Pascal's Triangle row
- * @param {array} pascalTriangle - The Pascals Triangle
+ * @param {array} pascalTriangle - The Pascal's Triangle
  */
 function computePascalTriangle(numberOfRows, pascalTriangle) {
     if (numberOfRows === 0) return pascalTriangle;
@@ -30,6 +30,5 @@ function computePascalTriangle(numberOfRows, pascalTriangle) {
     return computePascalTriangle(--numberOfRows, pascalTriangle);
 }
 
-export const rows = (numberOfRows) => {
-    return computePascalTriangle(numberOfRows, []);
-};
+export const rows = (numberOfRows) => computePascalTriangle(numberOfRows, []);
+
