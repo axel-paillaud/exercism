@@ -27,6 +27,10 @@ function splitBooks(books, packedBooks, packIndex = 0) {
     else return splitBooks(books, packedBooks, ++packIndex);
 }
 
+/*
+ * If a pack of 5 and a pack of 3 books exist, swap it to 2 pack of 4 books,
+ * for better discount
+ */ 
 function sortForBestDiscount(packedBooks) {
     packedBooks.forEach((pack) => {
         if (pack.length === 5) {
