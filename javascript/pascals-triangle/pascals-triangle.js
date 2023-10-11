@@ -9,9 +9,9 @@
  * @param {array} newRow - The new row to compute
  * @return {array} newRow
  */
-function computeRow(lastRow, newRow) {
-    for (let i = 0; i <= lastRow.length; i++) {
-        newRow.push((lastRow[i] + lastRow[i - 1]) || 1);
+function computeRow(previousRow, newRow) {
+    for (let i = 0; i <= previousRow.length; i++) {
+        newRow.push((previousRow[i] + previousRow[i - 1]) || 1);
     }
     return newRow;
 }
@@ -24,8 +24,8 @@ function computeRow(lastRow, newRow) {
 function computePascalTriangle(numberOfRows, pascalTriangle) {
     if (numberOfRows === 0) return pascalTriangle;
 
-    const lastRow = pascalTriangle[pascalTriangle.length - 1] || [];
-    pascalTriangle.push(computeRow(lastRow, []));
+    const previousRow = pascalTriangle[pascalTriangle.length - 1] || [];
+    pascalTriangle.push(computeRow(previousRow, []));
 
     return computePascalTriangle(--numberOfRows, pascalTriangle);
 }
