@@ -10,9 +10,11 @@ export class LinkedList {
     
     getLast(list) {
         if (list) {
+            console.dir(list);
             while (list.next) {
                 list = list.next;
             }
+            console.dir(list);
             return list;
         }
         return null;
@@ -20,19 +22,18 @@ export class LinkedList {
 
     push(station) {
         const last = this.getLast(this.list);
+        //this.list.next = { station, next: null,  prev: last};
         this.list.next = { station, next: null, prev: last};
     }
 
     pop() {
-        if (this.list) {
-            while (this.list.next) {
-                this.list = this.list.next;
-            }
-            const lastStation = this.list.station;
-            this.list.station = null;
-            console.log(lastStation);
-            return lastStation;
-        }
+        const lastNode = this.getLast(this.list);
+        // console.log(`next node : ${lastNode.next}`);
+        // console.log(`prev node : ${lastNode.prev}`);
+        // console.log(`prev station node : ${lastNode.prev.station}`);
+        // console.log(`last station : ${lastNode.station}`);
+
+        return lastNode.station;
     }
 
     shift() {
