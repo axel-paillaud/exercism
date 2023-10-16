@@ -3,37 +3,48 @@
 // convenience to get you started writing code faster.
 //
 
+import { before } from "node:test";
+
 export class LinkedList {
     constructor() {
-        this.list = { next: null, prev: null };
+        this.list = { 
+            head: {
+                next: null, prev: null }
+        };
     }
-    
+
     getLast(list) {
         if (list) {
-            console.dir(list);
+            list = list.head;
             while (list.next) {
                 list = list.next;
             }
-            console.dir(list);
             return list;
         }
         return null;
     }
 
+    getBeforeLast(list) {
+        list = list.head;
+        while (list.next) {
+            if (!list.next.next) {
+                return list;
+            }
+            list = list.next;
+        }
+        return null;
+    }
+
     push(station) {
-        const last = this.getLast(this.list);
+        const lastNode = this.getLast(this.list);
         //this.list.next = { station, next: null,  prev: last};
-        this.list.next = { station, next: null, prev: last};
+        lastNode.next = { station, next: null};
     }
 
     pop() {
-        const lastNode = this.getLast(this.list);
-        // console.log(`next node : ${lastNode.next}`);
-        // console.log(`prev node : ${lastNode.prev}`);
-        // console.log(`prev station node : ${lastNode.prev.station}`);
-        // console.log(`last station : ${lastNode.station}`);
-
-        return lastNode.station;
+        const lastStation = this.getLast(this.list).station;
+        this.getBeforeLast(this.list).next = null;
+        return lastStation;
     }
 
     shift() {

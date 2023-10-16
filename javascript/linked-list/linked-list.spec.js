@@ -1,7 +1,7 @@
 import { LinkedList } from './linked-list';
 
 describe('LinkedList', () => {
-  xtest('pop gets last element from the list', () => {
+  test('pop gets last element from the list', () => {
     const list = new LinkedList();
     list.push(7);
     expect(list.pop()).toBe(7);
@@ -15,13 +15,13 @@ describe('LinkedList', () => {
     expect(list.pop()).toBe(11);
   });
 
-  xtest('shift gets element from the list', () => {
+  test('shift gets element from the list', () => {
     const list = new LinkedList();
     list.push(17);
     expect(list.shift()).toBe(17);
   });
 
-  xtest('shift gets first element from the list', () => {
+  test('shift gets first element from the list', () => {
     const list = new LinkedList();
     list.push(23);
     list.push(5);
