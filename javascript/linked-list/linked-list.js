@@ -9,7 +9,8 @@ export class LinkedList {
     constructor() {
         this.list = { 
             head: {
-                next: null, prev: null }
+                next: null, 
+            }
         };
     }
 
@@ -37,14 +38,14 @@ export class LinkedList {
 
     push(station) {
         const lastNode = this.getLast(this.list);
-        //this.list.next = { station, next: null,  prev: last};
-        lastNode.next = { station, next: null};
+        lastNode.next = { station, next: null, prev: lastNode};
     }
 
     pop() {
-        const lastStation = this.getLast(this.list).station;
-        this.getBeforeLast(this.list).next = null;
-        return lastStation;
+        const lastNode = this.getLast(this.list);
+        const lastStation = lastNode.station;
+        lastNode.prev.next = null;
+        return lastNode.station;
     }
 
     shift() {
