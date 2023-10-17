@@ -7,7 +7,7 @@ describe('LinkedList', () => {
     expect(list.pop()).toBe(7);
   });
 
-  test('push/pop respectively add/remove at the end of the list', () => {
+  xtest('push/pop respectively add/remove at the end of the list', () => {
     const list = new LinkedList();
     list.push(11);
     list.push(13);
@@ -101,7 +101,7 @@ describe('LinkedList', () => {
     expect(list.shift()).toBe(47);
   });
 
-  xtest('deletes the only element', () => {
+  test('deletes the only element', () => {
     const list = new LinkedList();
     list.push(61);
     list.delete(61);

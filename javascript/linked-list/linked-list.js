@@ -15,20 +15,17 @@ export class LinkedList {
     }
 
     getLast(list) {
-        if (list) {
-            list = list.head;
-            while (list.next) {
-                list = list.next;
-            }
-            return list;
-        }
-        return null;
-    }
-
-    getBeforeLast(list) {
         list = list.head;
         while (list.next) {
-            if (!list.next.next) {
+            list = list.next;
+        }
+        return list;
+    }
+
+    find(list, station) {
+       list = list.head; 
+        while (list.next) {
+            if (list.station === station) {
                 return list;
             }
             list = list.next;
@@ -41,26 +38,49 @@ export class LinkedList {
         lastNode.next = { station, next: null, prev: lastNode};
     }
 
+    // Maybe refacto here : how handle when we have only one item and we pop() ?
     pop() {
         const lastNode = this.getLast(this.list);
-        const lastStation = lastNode.station;
-        lastNode.prev.next = null;
+        if (lastNode.prev) {
+            lastNode.prev.next = null;
+        }
+        else {
+            this.list.head.next = null;
+        }
         return lastNode.station;
     }
 
     shift() {
-        throw new Error('Remove this statement and implement this function');
+        const firstNode = this.list.head.next;
+        const secondNode = firstNode.next;
+        this.list.head.next = secondNode;
+        if (secondNode) {
+            secondNode.prev = null;
+        }
+        return firstNode.station;
     }
 
-    unshift() {
-        throw new Error('Remove this statement and implement this function');
+    unshift(station) {
+        const firstNode = this.list.head.next;
+        const newNode = { next: firstNode, station };
+        this.list.head.next = newNode;
+        if (firstNode) {
+            firstNode.prev = newNode;
+        }
     }
 
-    delete() {
-        throw new Error('Remove this statement and implement this function');
+    delete(station) {
+        const node = this.find(this.list, station);
+        console.log(node);
     }
 
     count() {
-        throw new Error('Remove this statement and implement this function');
+        let count = 0;
+        let list = this.list.head; 
+        while (list.next) {
+            count++;
+            list = list.next;
+        }
+        return count;
     }
 }
