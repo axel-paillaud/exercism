@@ -25,8 +25,8 @@ export class LinkedList {
     find(list, station) {
        list = list.head; 
         while (list.next) {
-            if (list.station === station) {
-                return list;
+            if (list.next.station === station) {
+                return list.next;
             }
             list = list.next;
         }
@@ -71,7 +71,17 @@ export class LinkedList {
 
     delete(station) {
         const node = this.find(this.list, station);
-        console.log(node);
+        if (!node) return null;
+        if (node.prev && node.next) {
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+        }
+        else if (node.prev) {
+            node.prev.next = null;
+        }
+        else {
+            this.list.head.next = null;
+        }
     }
 
     count() {
