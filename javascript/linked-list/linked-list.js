@@ -35,10 +35,9 @@ export class LinkedList {
 
     push(station) {
         const lastNode = this.getLast(this.list);
-        lastNode.next = { station, next: null, prev: lastNode};
+        lastNode.next = { station, next: null, prev: lastNode };
     }
 
-    // Maybe refacto here : how handle when we have only one item and we pop() ?
     pop() {
         const lastNode = this.getLast(this.list);
         if (lastNode.prev) {
