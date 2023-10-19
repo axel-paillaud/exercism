@@ -25,12 +25,10 @@ export class LinkedList {
     find(list, station) {
        list = list.head; 
         while (list.next) {
-            if (list.next.station === station) {
-                return list.next;
-            }
+            if (list.next.station === station) break; 
             list = list.next;
         }
-        return null;
+        return list.next;
     }
 
     push(station) {
@@ -75,11 +73,8 @@ export class LinkedList {
             node.prev.next = node.next;
             node.next.prev = node.prev;
         }
-        else if (node.prev) {
-            node.prev.next = null;
-        }
         else {
-            this.list.head.next = null;
+            node.prev.next = null;
         }
     }
 
