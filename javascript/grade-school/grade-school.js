@@ -5,15 +5,26 @@
 
 export class GradeSchool {
     constructor () {
-        this.studentsList = {};
+        this.studentsList = { '2': ['axel']};
+    }
+
+    set add(name) {
+        console.log("hello");
     }
 
     roster() {
         return this.studentsList;
     }
 
-    add() {
-        throw new Error('Remove this statement and implement this function');
+    remove() {
+
+    }
+
+    add(name, grade) {
+        if (!this.studentsList.hasOwnProperty(grade)) {
+            this.studentsList[grade] = [];
+        }
+        this.studentsList[grade].push(name);   
     }
 
     grade() {
