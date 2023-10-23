@@ -5,11 +5,16 @@
 
 export class GradeSchool {
     constructor () {
-        this.studentsList = { '2': ['axel']};
-    }
+        this.studentsList = { };
 
-    set add(name) {
-        console.log("hello");
+        const handler = {
+            get(target, prop, receiver) {
+                if (!target.hasOwnProperty(prop)) {
+                    target[prop] = [];
+                }
+            }
+        };
+        this.proxy = new Proxy(this.studentsList, handler);
     }
 
     roster() {
@@ -17,14 +22,12 @@ export class GradeSchool {
     }
 
     remove() {
-
+        console.log("hello from remove()");
     }
 
     add(name, grade) {
-        if (!this.studentsList.hasOwnProperty(grade)) {
-            this.studentsList[grade] = [];
-        }
-        this.studentsList[grade].push(name);   
+        this.proxy[grade];
+        this.studentsList[grade].push(name);
     }
 
     grade() {
