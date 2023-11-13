@@ -2,6 +2,6 @@
 
 bool is_armstrong_number(int candidate)
 {
-    printf("%d\n", candidate);
+    printf("%s\n", candidate);
     return true;
 }
