@@ -4,7 +4,7 @@ class Lasagna
 {
     public function expectedCookTime()
     {
-        // Implement the expectedCookTime method
+        return 40;
     }
 
     public function remainingCookTime($elapsed_minutes)
