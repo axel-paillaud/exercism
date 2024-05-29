@@ -1,29 +1,33 @@
 <?php
 
+const TOTAL_COOK_DURATION = 40;
+const TIME_PER_LAYER = 2;
+const ALARM_MESSAGE = "Ding!";
+
 class Lasagna
 {
     public function expectedCookTime()
     {
-        return 40;
+        return TOTAL_COOK_DURATION;
     }
 
     public function remainingCookTime($elapsed_minutes)
     {
-        // Implement the remainingCookTime method
+        return $this->expectedCookTime() - $elapsed_minutes;
     }
 
     public function totalPreparationTime($layers_to_prep)
     {
-        // Implement the totalPreparationTime method
+        return $layers_to_prep * TIME_PER_LAYER;
     }
 
     public function totalElapsedTime($layers_to_prep, $elapsed_minutes)
     {
-        // Implement the totalElapsedTime method
+        return $this->totalPreparationTime($layers_to_prep) + $elapsed_minutes;
     }
 
     public function alarm()
     {
-        // Implement the alarm method
+        return ALARM_MESSAGE;
     }
 }
