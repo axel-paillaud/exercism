@@ -2,14 +2,16 @@
 
 const SAUCE_PER_PIZZA = 125;
 const DOUGH_PER_PIZZA = 200;
-const PI = 3.14;
+const SLICE_PER_PIZZA  = 8;
 
 class PizzaPi
 {
     public function calculateDoughRequirement($pizzas, $persons)
     {
         $more_dough_required_per_person = 20;
-        return $pizzas * (($persons * $more_dough_required_per_person) + DOUGH_PER_PIZZA);
+        return $pizzas * (
+            ($persons * $more_dough_required_per_person) + DOUGH_PER_PIZZA
+        );
     }
 
     public function calculateSauceRequirement($pizzas, $canSize)
@@ -23,11 +25,11 @@ class PizzaPi
         $pizza_diameter
     )
     {
-        return floor(($cheese_dimension**3) / ($cheese_thickness * PI * $pizza_diameter));
+        return floor(($cheese_dimension**3) / ($cheese_thickness * M_PI * $pizza_diameter));
     }
 
-    public function calculateLeftOverSlices()
+    public function calculateLeftOverSlices($number_of_pizzas, $number_of_friends)
     {
-        throw new \BadFunctionCallException("Implement the function");
+        return ($number_of_pizzas * SLICE_PER_PIZZA) % $number_of_friends;
     }
 }
