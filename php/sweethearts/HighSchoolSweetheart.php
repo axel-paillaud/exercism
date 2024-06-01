@@ -21,12 +21,26 @@ class HighSchoolSweetheart
 
     public function pair(string $sweetheart_a, string $sweetheart_b): string
     {
-        print("sweetheart_a :");
-        print($sweetheart_a);
+        //error_log to debug phpunit
+        
+        $initials_a = $this->initials($sweetheart_a);
+        $initials_b = $this->initials($sweetheart_b);
 
-        print("sweetheart_b :");
-        print($sweetheart_b);
+        return 
+"     ******       ******
+   **      **   **      **
+ **         ** **         **
+**            *            **
+**                         **
+**     $initials_a  +  $initials_b     **
+ **                       **
+   **                   **
+     **               **
+       **           **
+         **       **
+           **   **
+             ***
+              *"; 
 
-        return "hello";
     }
 }
