@@ -14,9 +14,8 @@ class HighSchoolSweetheart
 
     public function initials(string $name): string
     {
-        // find a solution to destruct this array into first_name and last_name
-        $exploded_string = explode(' ', $name);
-        return $this->initial($exploded_string[0]) . ' ' . $this->initial($exploded_string[1]);
+        [$initial_a, $initial_b] = explode(' ', $name);
+        return $this->initial($initial_a) . ' ' . $this->initial($initial_b);
     }
 
     public function pair(string $sweetheart_a, string $sweetheart_b): string
