@@ -25,21 +25,21 @@ class HighSchoolSweetheart
         $initials_a = $this->initials($sweetheart_a);
         $initials_b = $this->initials($sweetheart_b);
 
-        return 
-"     ******       ******
-   **      **   **      **
- **         ** **         **
-**            *            **
-**                         **
-**     $initials_a  +  $initials_b     **
- **                       **
-   **                   **
-     **               **
-       **           **
-         **       **
-           **   **
-             ***
-              *"; 
-
+        return <<<HEART
+                 ******       ******
+               **      **   **      **
+             **         ** **         **
+            **            *            **
+            **                         **
+            **     $initials_a  +  $initials_b     **
+             **                       **
+               **                   **
+                 **               **
+                   **           **
+                     **       **
+                       **   **
+                         ***
+                          *
+            HEART;    
     }
 }
