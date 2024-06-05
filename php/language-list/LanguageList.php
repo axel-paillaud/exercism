@@ -1,6 +1,6 @@
 <?php
 
-function language_list()
+function language_list(string ...$string)
 {
-    // implement the language list function
+    return [...$string];
 }
