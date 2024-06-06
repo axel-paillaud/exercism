@@ -20,7 +20,7 @@ class LuckyNumbers
 
     public function isPalindrome(int $number): bool
     {
-        throw new \BadFunctionCallException("Implement the function");
+        return (string) $number === strrev((string) $number);
     }
 
     public function validate(string $input): string
