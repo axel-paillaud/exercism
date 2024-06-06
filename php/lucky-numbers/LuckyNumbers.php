@@ -27,6 +27,7 @@ class LuckyNumbers
     {
         if ($input === '') return 'Required field';
         else if ((int) $input <= 0) return 'Must be a whole number larger than 0';
-        else return '';
+
+        return '';
     }
 }
