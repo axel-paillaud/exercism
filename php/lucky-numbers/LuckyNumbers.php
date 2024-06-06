@@ -25,6 +25,8 @@ class LuckyNumbers
 
     public function validate(string $input): string
     {
-        throw new \BadFunctionCallException("Implement the function");
+        if ($input === '') return 'Required field';
+        else if ((int) $input <= 0) return 'Must be a whole number larger than 0';
+        else return '';
     }
 }
