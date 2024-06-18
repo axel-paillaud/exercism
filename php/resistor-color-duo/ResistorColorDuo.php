@@ -24,10 +24,29 @@
 
 declare(strict_types=1);
 
+const COLORS_RESISTOR_CODE = [
+    'black'     => 0,
+    'brown'     => 1,
+    'red'       => 2,
+    'orange'    => 3,
+    'yellow'    => 4,
+    'green'     => 5,
+    'blue'      => 6,
+    'violet'    => 7,
+    'grey'      => 8,
+    'white'     => 9,
+]; 
+
 class ResistorColorDuo
 {
     public function getColorsValue(array $colors): int
     {
-        throw new \BadMethodCallException(sprintf('Implement the %s method', __FUNCTION__));
+        $resistor_value = '';
+
+        for ($i = 0; $i < 2; $i++) { 
+             $resistor_value .= COLORS_RESISTOR_CODE[$colors[$i]];
+        }
+
+        return (int) $resistor_value;
     }
 }
