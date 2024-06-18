@@ -24,29 +24,29 @@
 
 declare(strict_types=1);
 
-const COLORS_RESISTOR_CODE = [
-    'black'     => 0,
-    'brown'     => 1,
-    'red'       => 2,
-    'orange'    => 3,
-    'yellow'    => 4,
-    'green'     => 5,
-    'blue'      => 6,
-    'violet'    => 7,
-    'grey'      => 8,
-    'white'     => 9,
-]; 
-
-const MAX_INPUT = 2;
-
 class ResistorColorDuo
 {
+    public const COLORS_RESISTOR_CODE = [
+        'black'     => 0,
+        'brown'     => 1,
+        'red'       => 2,
+        'orange'    => 3,
+        'yellow'    => 4,
+        'green'     => 5,
+        'blue'      => 6,
+        'violet'    => 7,
+        'grey'      => 8,
+        'white'     => 9,
+    ]; 
+
+    private const MAX_INPUT = 2;
+
     public function getColorsValue(array $colors): int
     {
         $resistor_value = '';
 
-        for ($i = 0; $i < MAX_INPUT; $i++) { 
-             $resistor_value .= COLORS_RESISTOR_CODE[$colors[$i]];
+        for ($i = 0; $i < static::MAX_INPUT; $i++) { 
+            $resistor_value .= static::COLORS_RESISTOR_CODE[$colors[$i]];
         }
 
         return (int) $resistor_value;
