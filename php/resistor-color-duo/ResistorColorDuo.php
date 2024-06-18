@@ -43,10 +43,12 @@ class ResistorColorDuo
     {
         $resistor_value = '';
 
-        for ($i = 0; $i < 2; $i++) { 
+/*         for ($i = 0; $i < 2; $i++) { 
              $resistor_value .= COLORS_RESISTOR_CODE[$colors[$i]];
-        }
+        } */
 
-        return (int) $resistor_value;
+        // return (int) $resistor_value;
+
+        return (int) (COLORS_RESISTOR_CODE[$colors[0]] . COLORS_RESISTOR_CODE[$colors[1]]);
     }
 }
