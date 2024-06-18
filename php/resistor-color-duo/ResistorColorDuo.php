@@ -37,18 +37,18 @@ const COLORS_RESISTOR_CODE = [
     'white'     => 9,
 ]; 
 
+const MAX_INPUT = 2;
+
 class ResistorColorDuo
 {
     public function getColorsValue(array $colors): int
     {
         $resistor_value = '';
 
-/*         for ($i = 0; $i < 2; $i++) { 
+        for ($i = 0; $i < MAX_INPUT; $i++) { 
              $resistor_value .= COLORS_RESISTOR_CODE[$colors[$i]];
-        } */
+        }
 
-        // return (int) $resistor_value;
-
-        return (int) (COLORS_RESISTOR_CODE[$colors[0]] . COLORS_RESISTOR_CODE[$colors[1]]);
+        return (int) $resistor_value;
     }
 }
