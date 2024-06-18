@@ -41,6 +41,10 @@ class ResistorColorDuo
 
     private const MAX_INPUT = 2;
 
+    /*
+    * @param string[] $colors 
+    * @return int resistor value
+    */
     public function getColorsValue(array $colors): int
     {
         $resistor_value = '';
