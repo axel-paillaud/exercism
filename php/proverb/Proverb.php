@@ -27,8 +27,8 @@ declare(strict_types=1);
 class Proverb
 {
     /*
-    * @param array $words List of words
-    * @return array Proverb with words, or empty array
+    * @param string[] $words List of words
+    * @return string[] Proverb with words, or empty array
     */
     public function recite(array $words): array 
     {
