@@ -35,14 +35,15 @@ class Proverb
         $proverbs = [];
         $words_length = count($words);
 
-        for ($i = 0; $i < $words_length; $i++) { 
-            if ($i === $words_length - 1) {
-                $proverbs[] = "And all for the want of a $words[0].";
-                break;
-            }
+        if ($words_length === 0) {
+            return $proverbs;
+        }
 
+        for ($i = 0; $i < $words_length - 1; $i++) { 
             $proverbs[] = "For want of a $words[$i] the {$words[$i + 1]} was lost.";
         }
+
+        $proverbs[] = "And all for the want of a $words[0].";
 
         return $proverbs;
     }
