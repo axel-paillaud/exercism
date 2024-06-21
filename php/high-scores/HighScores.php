@@ -26,7 +26,9 @@ declare(strict_types=1);
 
 class HighScores
 {
-    private array $scores;
+    public array $scores;
+    public int $latest = 0;
+    public int $personnalBest = 0;
 
     public function __construct(array $scores)
     {
