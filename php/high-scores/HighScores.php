@@ -26,8 +26,10 @@ declare(strict_types=1);
 
 class HighScores
 {
+    private array $scores;
+
     public function __construct(array $scores)
     {
-        throw new \BadFunctionCallException("Implement the HighScores class");
+        $this->scores = $scores;
     }
 }
