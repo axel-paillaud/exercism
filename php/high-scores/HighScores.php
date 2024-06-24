@@ -55,15 +55,7 @@ class HighScores
     */
     protected function computePersonalBest(array $scores): int
     {
-        $personalBest = 0;
-
-        foreach ($scores as $score) {
-            if ($score > $personalBest) {
-                $personalBest = $score;
-            }
-        }
-
-        return $personalBest;
+        return max($scores);
     }
 
     /*
@@ -72,14 +64,8 @@ class HighScores
     */
     protected function computePersonalTopThree(array $scores): array
     {
-        $personalTopThree = [];
-
         rsort($scores, SORT_NUMERIC);
 
-        foreach(array_splice($scores, 0, 3) as $score) {
-            $personalTopThree[] = $score;
-        }
-
-        return $personalTopThree;
+        return array_splice($scores, 0, 3);
     }
 }
