@@ -27,27 +27,59 @@ declare(strict_types=1);
 class HighScores
 {
     public array $scores;
-    public int $latest = 0;
-    public int $personnalBest = 0;
-    public int $personnalTopThree = 0;
+    public int $latest;
+    public int $personalBest;
+    public array $personalTopThree;
 
     public function __construct(array $scores)
     {
         $this->scores = $scores;
+
+        $this->latest = $this->computeLatest($this->scores);
+        $this->personalBest = $this->computePersonalBest($this->scores);
+        $this->personalTopThree = $this->computePersonalTopThree($this->scores);
     }
 
-    public function computeLatest(array $scores): int
+    /*
+    * @param int[] $scores List of scores
+    * @return int Latest score
+    */
+    protected function computeLatest(array $scores): int
     {
-        return 0;
+        return array_pop($scores);
     }
 
-    public function computePersonnalBest(array $scores): int
+    /*
+    * @param int[] $scores List of scores 
+    * @ return int Personal best scores
+    */
+    protected function computePersonalBest(array $scores): int
     {
-        return 0;
+        $personalBest = 0;
+
+        foreach ($scores as $score) {
+            if ($score > $personalBest) {
+                $personalBest = $score;
+            }
+        }
+
+        return $personalBest;
     }
 
-    public function computePersonnalTopThree(): array
+    /*
+    * @param int[] $scores List of scores
+    * @return int Top three personal best scores.
+    */
+    protected function computePersonalTopThree(array $scores): array
     {
-        return [];
+        $personalTopThree = [];
+
+        rsort($scores, SORT_NUMERIC);
+
+        foreach(array_splice($scores, 0, 3) as $score) {
+            $personalTopThree[] = $score;
+        }
+
+        return $personalTopThree;
     }
 }
