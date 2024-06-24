@@ -29,9 +29,25 @@ class HighScores
     public array $scores;
     public int $latest = 0;
     public int $personnalBest = 0;
+    public int $personnalTopThree = 0;
 
     public function __construct(array $scores)
     {
         $this->scores = $scores;
+    }
+
+    public function computeLatest(array $scores): int
+    {
+        return 0;
+    }
+
+    public function computePersonnalBest(array $scores): int
+    {
+        return 0;
+    }
+
+    public function computePersonnalTopThree(): array
+    {
+        return [];
     }
 }
