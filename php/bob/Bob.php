@@ -26,8 +26,45 @@ declare(strict_types=1);
 
 class Bob
 {
+    protected function isAQuestion(string $str): bool
+    {
+        $strlen = mb_strlen($str); 
+
+        if ($str[$strlen - 1] === '?') return true;
+        else return false;
+    }
+
+    protected function isCapital(string $str):bool
+    {
+        $isCapital = true;
+        $strToArray = str_split($str);
+
+        // php ctype_
+        foreach ($strToArray as $char) {
+            if (ctype_alpha($char) && ctype_upper($char)) $isCapital = false;
+        }
+
+        return $isCapital;
+    }
+
+    protected function isEmpty(string $str):bool
+    {
+        return false;
+    }
+
     public function respondTo(string $str): string
     {
-        throw new \BadMethodCallException("Implement the respondTo function");
+        switch ($str) {
+            case ($this->isAQuestion($str) && $this->isCapital($str)):
+                return 'Calm down, I know what I\'m doing!';
+                break;
+            case ($this->isAQuestion($str)):
+                return 'Sure.';
+                break;
+            
+            default:
+                return 'Whatever.';
+                break;
+        }
     }
 }
