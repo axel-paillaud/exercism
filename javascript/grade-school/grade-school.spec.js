@@ -27,7 +27,7 @@ describe('School', () => {
     expect(school.roster()).toEqual(expectedDb);
   });
 
-  xtest('adding students to different grades adds them to the roster', () => {
+  test('adding students to different grades adds them to the roster', () => {
     school.add('Chelsea', 3);
     school.add('Logan', 7);
 
@@ -35,7 +35,7 @@ describe('School', () => {
     expect(school.roster()).toEqual(expectedDb);
   });
 
-  xtest('grade returns the students in that grade in alphabetical order', () => {
+  test('grade returns the students in that grade in alphabetical order', () => {
     school.add('Franklin', 5);
     school.add('Bradley', 5);
     school.add('Jeff', 1);

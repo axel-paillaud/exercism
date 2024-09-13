@@ -6,15 +6,6 @@
 export class GradeSchool {
     constructor () {
         this.studentsList = { };
-
-        const handler = {
-            get(target, prop, receiver) {
-                if (!target.hasOwnProperty(prop)) {
-                    target[prop] = [];
-                }
-            }
-        };
-        this.proxy = new Proxy(this.studentsList, handler);
     }
 
     roster() {
@@ -26,11 +17,15 @@ export class GradeSchool {
     }
 
     add(name, grade) {
-        this.proxy[grade];
+        if (!Object.hasOwn(this.studentsList, grade)) {
+            this.studentsList[grade] = [];
+        }  
+
         this.studentsList[grade].push(name);
+        // check sort() for alphabetic order
     }
 
-    grade() {
-        throw new Error('Remove this statement and implement this function');
+    grade(grade) {
+        return this.studentsList[grade];
     }
 }
